@@ -3,6 +3,7 @@
     用来配置数据库
 """
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
 db = SQLAlchemy()
 
 
@@ -14,9 +15,10 @@ class Role(db.Model):
     def __repr__(self):
         return '<Role %r>' % self.name
 
+
 class User(db.Model):
     __tablename__ = 'users'
-    id = db.Column(db.String(64), unique=True, index=True)
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, index=True)
 
     def __repr__(self):
