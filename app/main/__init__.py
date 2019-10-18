@@ -7,5 +7,6 @@ from flask import Blueprint
 
 main = Blueprint('main', __name__)
 
+
 # 注意这个要写在最下面
 from . import views, errors
