@@ -4,7 +4,7 @@
     延迟创建程序实例，把创建过程移到可显式调用的工厂函数中
 """
 
-from flask import Flask, render_template
+from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_moment import Moment
