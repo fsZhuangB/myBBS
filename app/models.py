@@ -1,6 +1,17 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from . import db
+from . import login_manager
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    """
+    加载用户的回调函数
+    :param user_id: a user_id named by unicode
+    :return: if it can find the user, return user object, else return None
+    """
+    return User.query.get(int(user_id))
 
 
 class Role(db.Model):
@@ -16,7 +27,7 @@ class Role(db.Model):
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(64), unique=True, index=True)
+    #email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     password_hash = db.Column(db.String(128))
