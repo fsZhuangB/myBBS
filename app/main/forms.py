@@ -3,7 +3,7 @@
     表单对象
 """
 from flask_wtf import Form
-from wtforms import StringField, SubmitField,validators
+from wtforms import StringField, SubmitField, validators
 
 class NameForm(Form):
     """
