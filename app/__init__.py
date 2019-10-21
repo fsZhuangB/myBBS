@@ -30,5 +30,10 @@ def create_app(config_name):
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)  # 注册蓝本
 
+    # auth用认证蓝本
+    # url_prefix是可选参数，注册后蓝本中定义的所有路由都会加入指定前缀
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
+
     # 附加路由和自定义错误页面
     return app
